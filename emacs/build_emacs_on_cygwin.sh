@@ -7,8 +7,8 @@
 # Emacs version you want to install.
 readonly EMACS_VERSION=emacs-25.2
 # Path to install directory. Cygwin style path.
-#readonly EMACS_INSTALL_DIR=/cygdrive/c/Tools/${EMACS_VERSION}
-readonly EMACS_INSTALL_DIR=/usr/local
+readonly EMACS_INSTALL_DIR=/cygdrive/c/Tools/tmp/${EMACS_VERSION}
+#readonly EMACS_INSTALL_DIR=/usr/local
 # Working Directory.
 readonly BUILD_BASE_DIR=/tmp
 
@@ -109,7 +109,7 @@ function edit_msys_to_w32
 {
     local target=build-aux/msys-to-w32
     sed --in-place ${target} \
-        -e 's@pwd\ -W@cygpath -w `pwd` | sed -e '\''s/\\\\/\\//g'\''@'
+        -e 's@pwd\ -W@cygpath -w `pwd` | sed -e '\''s!\\\\!/!g'\''@'
 }
 
 function setup_build_parameters
@@ -215,8 +215,7 @@ function post_install
         cp -a ${EMACS_VERSION}.exe emacs.exe
 
         # Copy the dependent dll files.
-        # if "-static" compile option use, maybe don't need this.
-        #copy_dlls
+        copy_dlls
     fi
 }
 
