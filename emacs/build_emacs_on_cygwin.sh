@@ -5,7 +5,7 @@
 # Please modify those parameter.
 ########################################
 # Emacs version you want to install.
-readonly EMACS_VERSION=emacs-25.2
+readonly EMACS_VERSION=emacs-25.3
 # Path to install directory. Cygwin style path.
 readonly EMACS_INSTALL_DIR=/cygdrive/c/Tools/tmp/${EMACS_VERSION}
 #readonly EMACS_INSTALL_DIR=/usr/local
@@ -67,13 +67,13 @@ function patch_to_sources
 {
     base_url="https://gist.github.com/rzl24ozi"
 
-    # emacs-25.2-w32-ime.diff
+    # emacs-25.3-w32-ime.diff
     patch_to_sources_w32_ime ${base_url}
 
-    # emacs-25.2-disable-w32-ime.diff
+    # emacs-25.3-disable-w32-ime.diff
     patch_to_sources_disable-w32-ime ${base_url}
 
-    # emacs-25.2-cygwin-rsvg.diff
+    # emacs-25.3-cygwin-rsvg.diff
     patch_to_sources_cygwin_rsvg ${base_url}
 }
 
@@ -82,7 +82,7 @@ function patch_to_sources_w32_ime
     local base_url=$1
     local w32_ime="8c20b904c9f5e588ba99"
     git clone ${base_url}/${w32_ime}
-    patch -p0 < ${w32_ime}/emacs-25.2-w32-ime.diff
+    patch -p0 < ${w32_ime}/emacs-25.3-w32-ime.diff
 }
 
 function patch_to_sources_disable-w32-ime
@@ -90,7 +90,7 @@ function patch_to_sources_disable-w32-ime
     local base_url=$1
     local disable_w32_ime="76aadcfc58404d9e7326"
     git clone ${base_url}/${disable_w32_ime}
-    patch -p0 < ${disable_w32_ime}/emacs-25.2-disable-w32-ime.diff
+    patch -p0 < ${disable_w32_ime}/emacs-25.3-disable-w32-ime.diff
 }
 
 function patch_to_sources_cygwin_rsvg
@@ -98,7 +98,7 @@ function patch_to_sources_cygwin_rsvg
     local base_url=$1
     local cygwin_rsvg="b0165eaf404a0c5a47ae"
     git clone ${base_url}/${cygwin_rsvg}
-    patch -p0 < ${cygwin_rsvg}/emacs-25.2-cygwin-rsvg.diff
+    patch -p0 < ${cygwin_rsvg}/emacs-25.3-cygwin-rsvg.diff
 }
 
 # if use mingw on Cygwin, the configure script will generate file for MSYS2.
@@ -238,14 +238,14 @@ function copy_dlls
        libglib-2.0-0.dll \
        libgmodule-2.0-0.dll \
        libgmp-10.dll \
-       libgnutls-28.dll \
+       libgnutls-30.dll \
        libgobject-2.0-0.dll \
        libharfbuzz-0.dll \
-       libhogweed-2.dll \
+       libhogweed-4.dll \
        libintl-8.dll \
        libjpeg-8.dll \
        liblzma-5.dll \
-       libnettle-4.dll \
+       libnettle-6.dll \
        libp11-kit-0.dll \
        libpango-1.0-0.dll \
        libpangocairo-1.0-0.dll \
